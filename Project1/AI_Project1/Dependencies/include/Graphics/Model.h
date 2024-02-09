@@ -72,5 +72,8 @@ private:
 	void SetInverseModelMatrix(Shader* shader);
 
 	void OnModelSelected();
+
+	// Inherited via Entity
+	void Render() override;
 };
 

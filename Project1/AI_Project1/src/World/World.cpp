@@ -31,3 +31,7 @@ void World::Update(float deltaTime)
 void World::OnDestroy()
 {
 }
+
+void World::Render()
+{
+}

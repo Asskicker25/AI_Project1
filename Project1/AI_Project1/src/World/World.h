@@ -14,5 +14,8 @@ public:
 	void Start() override;
 	void Update(float deltaTime) override;
 	void OnDestroy() override;
+
+	// Inherited via Entity
+	void Render() override;
 };
 

@@ -90,6 +90,22 @@ void EntityManager::Update(float deltaTime)
 
 }
 
+void EntityManager::Render()
+{
+	try
+	{
+		for (std::pair<const std::string&, Entity*> item : listOfEntities)
+		{
+
+			item.second->Render();
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+}
+
 void EntityManager::Destroy(Entity* entity)
 {
 	entity->OnDestroy();

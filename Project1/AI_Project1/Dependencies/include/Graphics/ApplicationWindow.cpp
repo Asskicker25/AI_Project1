@@ -181,8 +181,8 @@ void ApplicationWindow::EngineUpdate()
 {
 	Timer::GetInstance().SetCurrentTime(glfwGetTime());
 
-	stopKeyCallback = applicationPlay;
-	stopMouseCallback = applicationPlay;
+	/*stopKeyCallback = applicationPlay;
+	stopMouseCallback = applicationPlay;*/
 
 	MoveCameraKeyBoard(window);
 	ProcessInput(window);
@@ -284,6 +284,7 @@ void ApplicationWindow::RenderForCamera(Camera* camera, FrameBuffer* frameBuffer
 
 	if (viewport)
 	{
+		EntityManager::GetInstance().Render();
 		Render();
 	}
 	Renderer::GetInstance().Draw(viewport);

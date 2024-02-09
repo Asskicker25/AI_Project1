@@ -553,3 +553,7 @@ void Model::OnModelSelected()
 	Renderer::GetInstance().SetSelectedModel(this);
 	EditorLayout::GetInstance().SetSelectedObjects({ this });
 }
+
+void Model::Render()
+{
+}

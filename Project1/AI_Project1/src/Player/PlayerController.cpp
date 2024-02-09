@@ -4,16 +4,18 @@
 class PlayerController::Pimpl
 {
 public:
-	Pimpl();
+	Pimpl(PlayerController* playerController);
+
+	PlayerController* mPlayerController = nullptr;
 
 };
 
-PlayerController::Pimpl::Pimpl()
+PlayerController::Pimpl::Pimpl(PlayerController* playerController) : mPlayerController{ playerController }
 {
-	ThirdPersonCameraController* cameraController = new ThirdPersonCameraController();
+	ThirdPersonCameraController* cameraController = new ThirdPersonCameraController(mPlayerController);
 }
 
-PlayerController::PlayerController() : pimpl { new Pimpl() }
+PlayerController::PlayerController() : pimpl { new Pimpl(this) }
 {
 	LoadModel("Assets/Models/Player.fbx");
 	transform.SetScale(glm::vec3(0.01f));

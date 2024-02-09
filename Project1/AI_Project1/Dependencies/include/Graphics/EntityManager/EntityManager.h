@@ -21,6 +21,7 @@ public:
 	bool ShouldRemove(const std::string& entityId);
 
 	void Update(float deltaTime);
+	void Render();
 	void Destroy(Entity* entity);
 };
 
