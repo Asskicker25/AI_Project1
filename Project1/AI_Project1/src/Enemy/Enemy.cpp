@@ -7,6 +7,8 @@
 #include "States/SeekState.h"
 #include "States/FleeState.h"
 #include "States/PursueState.h"
+#include "States/EvadeState.h"
+#include "States/ApproachState.h"
 
 
 
@@ -20,6 +22,8 @@ Enemy::Enemy(Entity* target, eEnemyState currentState, const std::string& modelP
 	AddState(SEEK, new SeekState());
 	AddState(FLEE, new FleeState());
 	AddState(PURSUE, new PursueState());
+	AddState(EVADE, new EvadeState());
+	AddState(APPROACH, new ApproachState());
 
 	LoadModel(modelPath);
 	transform.SetScale(glm::vec3(0.01f));

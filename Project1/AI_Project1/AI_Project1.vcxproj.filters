@@ -93,6 +93,12 @@
     <ClInclude Include="src\Enemy\States\PursueState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Enemy\States\EvadeState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemy\States\ApproachState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AI_Application.cpp">
@@ -162,6 +168,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Enemy\States\PursueState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemy\States\EvadeState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemy\States\ApproachState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
