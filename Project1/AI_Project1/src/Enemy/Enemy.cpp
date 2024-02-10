@@ -1,21 +1,28 @@
 #include <Graphics/Renderer.h>
 
 #include "Enemy.h"
+
+#include "States/BaseState.h"
 #include "States/IdleState.h"
 #include "States/SeekState.h"
-#include "States/BaseState.h"
+#include "States/FleeState.h"
+#include "States/PursueState.h"
 
 
-Enemy::Enemy(eEnemyState currentState, std::string modelPath)
+
+Enemy::Enemy(Entity* target, eEnemyState currentState, const std::string& modelPath)
 {
+	mTarget = target;
+
 	mCurrentState = currentState;
 
 	AddState(IDLE, new IdleState());
 	AddState(SEEK, new SeekState());
+	AddState(FLEE, new FleeState());
+	AddState(PURSUE, new PursueState());
 
 	LoadModel(modelPath);
 	transform.SetScale(glm::vec3(0.01f));
-	//mModel->transform.SetRotation(glm::vec3(0, 180, 0));
 }
 
 void Enemy::AddState(eEnemyState stateKey, BaseState* state)
@@ -62,4 +69,21 @@ void Enemy::Render()
 
 void Enemy::OnDestroy()
 {
+}
+
+void Enemy::OnPropertyDraw()
+{
+	Model::OnPropertyDraw();
+
+	ImGui::Columns(2);
+	ImGui::SetColumnWidth(0, 150);
+	ImGui::Text("State");
+	ImGui::NextColumn();
+
+	int item_current = (int)mCurrentState;
+
+	if (ImGui::Combo("###State", &item_current, items, IM_ARRAYSIZE(items)))
+	{
+		mCurrentState = eEnemyState(item_current);
+	}
 }

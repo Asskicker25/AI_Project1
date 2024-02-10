@@ -2,7 +2,7 @@
 
 #include "BaseState.h"
 
-class SeekState : public BaseState
+class FleeState : public BaseState
 {
 public:
 
@@ -19,6 +19,13 @@ private:
 
 	Transform* mTarget = nullptr;
 
+	bool mIsFleeing = false;
+
+	float mFleeAtDistance = 5;
+	float mFleeStopDistance = 15;
+	float mCurrentDistance = 0;
+
 	glm::vec3 mMoveDir;
+	
 };
 

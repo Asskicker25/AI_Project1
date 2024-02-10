@@ -138,6 +138,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Enemy\States\PursueState.h" />
+    <ClInclude Include="src\Enemy\States\FleeState.h" />
     <ClInclude Include="src\Enemy\States\SeekState.h" />
     <ClInclude Include="src\Enemy\States\IdleState.h" />
     <ClInclude Include="src\Enemy\States\BaseState.h" />
@@ -164,6 +166,8 @@
     <ClInclude Include="src\Player\ThirdPersonCameraController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Enemy\States\PursueState.cpp" />
+    <ClCompile Include="src\Enemy\States\FleeState.cpp" />
     <ClCompile Include="src\Enemy\States\SeekState.cpp" />
     <ClCompile Include="src\Enemy\States\IdleState.cpp" />
     <ClCompile Include="src\Enemy\States\BaseState.cpp" />

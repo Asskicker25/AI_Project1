@@ -86,10 +86,10 @@ void PlayerController::Pimpl::SetInput()
 void PlayerController::Pimpl::HandleMovement()
 {
 	mPlayerController->transform.position += mPlayerController->transform.GetForward() * - mMoveDir.y *
-		mPlayerSpeed * Timer::GetInstance().deltaTime;;
+		mPlayerSpeed * Timer::GetInstance().deltaTime;
 
 	mPlayerController->transform.position += mPlayerController->transform.GetRight() * -mMoveDir.x *
-		mPlayerSpeed * Timer::GetInstance().deltaTime;;
+		mPlayerSpeed * Timer::GetInstance().deltaTime;
 }
 
 void PlayerController::Pimpl::HandleRotation()

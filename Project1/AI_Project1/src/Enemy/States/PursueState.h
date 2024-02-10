@@ -2,10 +2,10 @@
 
 #include "BaseState.h"
 
-class SeekState : public BaseState
+class PursueState : public BaseState
 {
-public:
 
+public:
 	// Inherited via BaseState
 	void Start() override;
 	void Update() override;
@@ -18,6 +18,9 @@ private:
 	void HandleRotation();
 
 	Transform* mTarget = nullptr;
+
+	float mFuturePredictDistance = 5;
+	float mCurrentDistance = 0;
 
 	glm::vec3 mMoveDir;
 };

@@ -10,7 +10,7 @@ class BaseState;
 class Enemy : public Model
 {
 public:
-	Enemy(eEnemyState currentState, std::string modelPath);
+	Enemy(Entity* target, eEnemyState currentState,const std::string& modelPath);
 
 	void AddState(eEnemyState stateKey, BaseState* state);
 	void RemoveState(eEnemyState stateKey);
@@ -23,7 +23,14 @@ public:
 	void Update(float deltaTime) override;
 	void Render() override;
 	void OnDestroy() override;
+	virtual void OnPropertyDraw();
 
+	Entity* mTarget = nullptr;
+
+	const char* items[6] = { "IDLE", "SEEK", "FLEE", "PURSUE", "EVADE", "APPROACH" };
+
+	float mBaseSpeed = 2;
+	float mRunSpeed = 4;
 
 private:
 
