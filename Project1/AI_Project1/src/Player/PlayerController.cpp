@@ -1,21 +1,28 @@
 #include "PlayerController.h"
 #include "ThirdPersonCameraController.h"
-
+#include <Graphics/Timer.h>
+#include <Graphics/CameraSystem.h>
 
 
 class PlayerController::Pimpl
 {
 public:
 
+	float mPlayerSpeed = 10;
 	glm::vec2 mMoveDir;
+
 	PlayerController* mPlayerController = nullptr;
+	Camera* mMainCamera;
 
 	Pimpl(PlayerController* playerController);
 
+	void Start();
 	void Update();
-	void SetInput();
 	void OnPropertyDraw();
 
+	void SetInput();
+	void HandleMovement();
+	void HandleRotation();
 };
 
 PlayerController::Pimpl::Pimpl(PlayerController* playerController) : mPlayerController{ playerController }
@@ -33,6 +40,7 @@ PlayerController::PlayerController() : pimpl{ new Pimpl(this) }
 
 void PlayerController::Start()
 {
+	pimpl->Start();
 }
 
 void PlayerController::Update(float deltaTime)
@@ -51,9 +59,16 @@ void PlayerController::OnPropertyDraw()
 	pimpl->OnPropertyDraw();
 }
 
+void PlayerController::Pimpl::Start()
+{
+	mMainCamera = CameraSystem::GetInstance().GetMainCamera();
+}
+
 void PlayerController::Pimpl::Update()
 {
 	SetInput();
+	HandleMovement();
+	HandleRotation();
 }
 
 void PlayerController::Pimpl::SetInput()
@@ -68,11 +83,33 @@ void PlayerController::Pimpl::SetInput()
 
 }
 
+void PlayerController::Pimpl::HandleMovement()
+{
+	mPlayerController->transform.position += mPlayerController->transform.GetForward() * - mMoveDir.y *
+		mPlayerSpeed * Timer::GetInstance().deltaTime;;
+
+	mPlayerController->transform.position += mPlayerController->transform.GetRight() * -mMoveDir.x *
+		mPlayerSpeed * Timer::GetInstance().deltaTime;;
+}
+
+void PlayerController::Pimpl::HandleRotation()
+{
+	glm::vec3 rotation = mPlayerController->transform.rotation;
+	
+	rotation.y = mMainCamera->transform.rotation.y + 180;
+
+	mPlayerController->transform.SetRotation(rotation);
+}
+
 void PlayerController::Pimpl::OnPropertyDraw()
 {
 	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 10));
 
 	ImGui::DragFloat2("MoveDir", &mMoveDir[0]);
+
+	glm::vec3 forwardDir = mPlayerController->transform.GetForward();
+
+	ImGui::DragFloat3("ForwardDir", &forwardDir[0]);
 
 	ImGui::PopStyleVar();
 }
