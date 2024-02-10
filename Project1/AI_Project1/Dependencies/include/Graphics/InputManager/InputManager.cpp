@@ -1,5 +1,6 @@
-#include "InputManager.h"
 #include <unordered_set>
+#include "InputManager.h"
+#include "../Debugger.h"
 
 class InputManager::Pimpl
 {
@@ -53,6 +54,23 @@ void InputManager::OnKeyPressed(const int& key)
 	{
 		listener->OnKeyPressed(key);
 	}
+
+	if (key == GLFW_KEY_A)
+	{
+		mLeftHeld = true;
+	}
+	else if (key == GLFW_KEY_D)
+	{
+		mRightHeld = true;
+	}
+	else if (key == GLFW_KEY_W)
+	{
+		mUpHeld = true;
+	}
+	else if (key == GLFW_KEY_S)
+	{
+		mDownHeld = true;
+	}
 }
 
 void InputManager::OnKeyReleased(const int& key)
@@ -62,6 +80,23 @@ void InputManager::OnKeyReleased(const int& key)
 	for (iInputListener* listener : inputListeners)
 	{
 		listener->OnKeyReleased(key);
+	}
+
+	if (key == GLFW_KEY_A)
+	{
+		mLeftHeld = false;
+	}
+	else if (key == GLFW_KEY_D)
+	{
+		mRightHeld = false;
+	}
+	else if (key == GLFW_KEY_W)
+	{
+		mUpHeld = false;
+	}
+	else if (key == GLFW_KEY_S)
+	{
+		mDownHeld = false;
 	}
 }
 
@@ -86,6 +121,16 @@ float InputManager::GetMouseY()
 	return mMouseY;
 }
 
+float InputManager::GetAxisX()
+{
+	return mAxisX;
+}
+
+float InputManager::GetAxisY()
+{
+	return mAxisY;
+}
+
 glm::vec2 InputManager::GetMouseDelta()
 {
 	return mMouseDelta;
@@ -100,6 +145,24 @@ void InputManager::SetMousePos(float x, float y)
 void InputManager::SetMouseDelta(glm::vec2 delta)
 {
 	mMouseDelta = delta;
+}
+
+void InputManager::Update()
+{
+	CalculateAxis();
+}
+
+
+void InputManager::CalculateAxis()
+{
+	mAxisX = 0;
+	mAxisY = 0;
+
+	mAxisX += mRightHeld ? 1 : 0;
+	mAxisX -= mLeftHeld ? 1 : 0;
+
+	mAxisY += mUpHeld ? 1 : 0;
+	mAxisY -= mDownHeld ? 1 : 0;
 }
 
 

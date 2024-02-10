@@ -174,7 +174,6 @@ void ApplicationWindow::InitializeWindow(int windowWidth, int windowHeight)
 
 	viewportCamera->InitializeCamera();
 
-
 }
 
 void ApplicationWindow::EngineUpdate()
@@ -190,6 +189,7 @@ void ApplicationWindow::EngineUpdate()
 	if (applicationPlay)
 	{
 		EntityManager::GetInstance().Update(Timer::GetInstance().deltaTime);
+		InputManager::GetInstance().Update();
 	}
 
 	Update();
@@ -318,12 +318,24 @@ void ApplicationWindow::GetCursorCallback(GLFWwindow* window, double xpos, doubl
 
 	mouseDeltaPos = currentMousePos - lastMousePos;
 	mouseDeltaPos.y = -mouseDeltaPos.y;
+	
+	InputManager::GetInstance().SetMouseDelta(mouseDeltaPos);
+
+	/*int width, height;
+	glfwGetWindowSize(window, &width, &height);
+
+	if (xpos <= 0)
+	{
+		glfwSetCursorPos(window, width, ypos);
+	}
+	else if (xpos >= width - 1)
+	{
+		glfwSetCursorPos(window, 0, ypos);
+	}*/
 
 	lastMousePos.x = xpos;
 	lastMousePos.y = ypos;
 
-
-	InputManager::GetInstance().SetMouseDelta(mouseDeltaPos);
 
 	if (stopMouseCallback) return;
 	if (!mouseHeld) return;

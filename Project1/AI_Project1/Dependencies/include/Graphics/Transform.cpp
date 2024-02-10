@@ -44,19 +44,25 @@ void Transform::SetScale(glm::vec3 _scale)
 
 glm::mat4 Transform::GetTransformMatrix()
 {
-	glm::mat4 trans = glm::mat4(1.0f);
+	//glm::mat4 trans = glm::mat4(1.0f);
 
-	trans = glm::translate(trans, position);
+	glm::mat4 rotation = glm::toMat4(quaternionRotation);
 
-	/*glm::quat q = glm::quat(glm::eulerAngleX(glm::radians(90.0f)) *
-		glm::eulerAngleY(glm::radians(90.0f)) *
-		glm::eulerAngleZ(glm::radians(90.0f)));*/
+	return glm::translate(glm::mat4(1.0f), position)
+		* rotation
+		* glm::scale(glm::mat4(1.0f), scale);
 
-	trans *= glm::toMat4(quaternionRotation);
+	//trans = glm::translate(trans, position);
 
-	trans = glm::scale(trans, scale);
+	///*glm::quat q = glm::quat(glm::eulerAngleX(glm::radians(90.0f)) *
+	//	glm::eulerAngleY(glm::radians(90.0f)) *
+	//	glm::eulerAngleZ(glm::radians(90.0f)));*/
 
-	return trans;
+	//trans *= 
+
+	//trans = glm::scale(trans, scale);
+
+	//return trans;
 }
 
 glm::mat4 Transform::GetInverseMatrix()

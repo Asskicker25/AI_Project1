@@ -14,6 +14,8 @@ public:
 	void Update(float deltaTime) override;
 	void OnDestroy() override;
 
+	virtual void OnPropertyDraw();
+
 private:
 	class Pimpl;
 	Pimpl* pimpl = nullptr;
