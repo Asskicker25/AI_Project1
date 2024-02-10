@@ -62,7 +62,7 @@ void SceneViewportPanel::OnRender(float windowSizeX, float windowSizeY)
 		ImGuizmo::Manipulate(
 			glm::value_ptr(cameraView),
 			glm::value_ptr(cameraProjection),
-			ImGuizmo::OPERATION::ROTATE, ImGuizmo::LOCAL,
+			guizmoType, ImGuizmo::LOCAL,
 			glm::value_ptr(transform));
 
 		if (ImGuizmo::IsUsing())
@@ -75,12 +75,12 @@ void SceneViewportPanel::OnRender(float windowSizeX, float windowSizeY)
 
 			//Debugger::Print("Rotation : ", rot);
 
-			//selectedModel->transform.SetPosition(glm::vec3(pos));
+			selectedModel->transform.SetPosition(glm::vec3(pos));
+			selectedModel->transform.SetScale(glm::vec3(scale));
 
 			/*glm::vec3 delta = rot - selectedModel->transform.rotation;
 			glm::vec3 setRotation = selectedModel->transform.rotation + delta;
 			selectedModel->transform.SetRotation(glm::vec3(setRotation));*/
-			//selectedModel->transform.SetScale(glm::vec3(scale));
 		}
 	}
 

@@ -1,6 +1,7 @@
 #include "AI_Application.h"
 #include "Player/PlayerController.h"
 #include "World/World.h"
+#include "Enemy/Enemy.h"
 
 void AI_Application::SetUp()
 {
@@ -20,10 +21,13 @@ void AI_Application::SetUp()
 	dirLight->transform.SetPosition(glm::vec3(0, 0, 3));
 	dirLight->InitializeLight(Directional);
 
-
-	PlayerController* playerController = new PlayerController();
 	World* world = new World();
 
+	PlayerController* playerController = new PlayerController();
+
+	Enemy* enemy = new Enemy(IDLE, "Assets/Models/Enemy.fbx");
+	enemy->name = "Enemy";
+	enemy->transform.SetPosition(glm::vec3(10, 0, 0));
 }
 
 void AI_Application::Update()

@@ -138,6 +138,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Enemy\States\SeekState.h" />
+    <ClInclude Include="src\Enemy\States\IdleState.h" />
+    <ClInclude Include="src\Enemy\States\BaseState.h" />
     <ClInclude Include="Dependencies\include\imgui\imconfig.h" />
     <ClInclude Include="Dependencies\include\imgui\ImCurveEdit.h" />
     <ClInclude Include="Dependencies\include\imgui\ImGradient.h" />
@@ -152,6 +155,8 @@
     <ClInclude Include="Dependencies\include\imgui\imstb_textedit.h" />
     <ClInclude Include="Dependencies\include\imgui\imstb_truetype.h" />
     <ClInclude Include="Dependencies\include\imgui\ImZoomSlider.h" />
+    <ClInclude Include="src\Enemy\States\eEnemyState.h" />
+    <ClInclude Include="src\Enemy\Enemy.h" />
     <ClInclude Include="src\Player\PlayerController.h" />
     <ClInclude Include="src\AI_Application.h" />
     <ClInclude Include="src\AppSettings.h" />
@@ -159,6 +164,9 @@
     <ClInclude Include="src\Player\ThirdPersonCameraController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Enemy\States\SeekState.cpp" />
+    <ClCompile Include="src\Enemy\States\IdleState.cpp" />
+    <ClCompile Include="src\Enemy\States\BaseState.cpp" />
     <ClCompile Include="Dependencies\include\imgui\ImCurveEdit.cpp" />
     <ClCompile Include="Dependencies\include\imgui\ImGradient.cpp" />
     <ClCompile Include="Dependencies\include\imgui\imgui.cpp" />
@@ -170,6 +178,8 @@
     <ClCompile Include="Dependencies\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="Dependencies\include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Dependencies\include\imgui\ImSequencer.cpp" />
+    <ClCompile Include="src\Enemy\States\eEnemyState.cpp" />
+    <ClCompile Include="src\Enemy\Enemy.cpp" />
     <ClCompile Include="src\Player\PlayerController.cpp" />
     <ClCompile Include="src\AI_Application.cpp" />
     <ClCompile Include="src\main.cpp" />
