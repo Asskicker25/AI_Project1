@@ -6,6 +6,12 @@ void FleeState::Start()
 	mTarget = &mEnemy->mTarget->transform;
 }
 
+void FleeState::OnStateChanged()
+{
+	mEnemy->meshes[2]->material->AsMaterial()->SetBaseColor(mEnemy->mFleeColor);
+	mEnemy->meshes[3]->material->AsMaterial()->SetBaseColor(mEnemy->mFleeColor);
+}
+
 void FleeState::Update()
 {
 	if (mEnemy->mTarget == nullptr) return;
@@ -61,3 +67,5 @@ void FleeState::HandleRotation()
 
 	mEnemy->transform.SetQuatRotation(rotationQuat);
 }
+
+

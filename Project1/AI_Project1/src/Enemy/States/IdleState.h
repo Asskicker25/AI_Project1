@@ -9,5 +9,8 @@ public:
 	void Start() override;
 	void Update() override;
 	void Cleanup() override;
+
+	// Inherited via BaseState
+	void OnStateChanged() override;
 };
 

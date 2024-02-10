@@ -6,6 +6,12 @@ void EvadeState::Start()
 	mTarget = &mEnemy->mTarget->transform;
 }
 
+void EvadeState::OnStateChanged()
+{
+	mEnemy->meshes[2]->material->AsMaterial()->SetBaseColor(mEnemy->mEvadeColor);
+	mEnemy->meshes[3]->material->AsMaterial()->SetBaseColor(mEnemy->mEvadeColor);
+}
+
 void EvadeState::Update()
 {
 	if (mEnemy->mTarget == nullptr) return;
@@ -47,3 +53,4 @@ void EvadeState::HandleRotation()
 	mEnemy->transform.SetQuatRotation(rotationQuat);
 
 }
+

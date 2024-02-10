@@ -32,11 +32,17 @@ public:
 	float mBaseSpeed = 2;
 	float mRunSpeed = 4;
 
+	glm::vec4 mSeekColor = glm::vec4(1, 0, 0, 1);
+	glm::vec4 mFleeColor = glm::vec4(0, 1, 0, 1);
+	glm::vec4 mPursueColor = glm::vec4(0, 0, 1, 1);
+	glm::vec4 mEvadeColor = glm::vec4(0, 0, 0, 1);
+	glm::vec4 mApproachColor = glm::vec4(1, 1, 1, 1);
+
 private:
 
 	std::unordered_map<eEnemyState, BaseState*> mListOfStates;
 
-	eEnemyState mCurrentState;
+	eEnemyState mCurrentState = IDLE;
 
 
 };

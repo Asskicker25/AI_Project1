@@ -16,7 +16,6 @@ Enemy::Enemy(Entity* target, eEnemyState currentState, const std::string& modelP
 {
 	mTarget = target;
 
-	mCurrentState = currentState;
 
 	AddState(IDLE, new IdleState());
 	AddState(SEEK, new SeekState());
@@ -27,6 +26,9 @@ Enemy::Enemy(Entity* target, eEnemyState currentState, const std::string& modelP
 
 	LoadModel(modelPath);
 	transform.SetScale(glm::vec3(0.01f));
+
+	ChangeState(currentState);
+
 }
 
 void Enemy::AddState(eEnemyState stateKey, BaseState* state)
@@ -45,6 +47,8 @@ void Enemy::ChangeState(eEnemyState state)
 	GetCurrentState()->Cleanup();
 
 	mCurrentState = state;
+
+	GetCurrentState()->OnStateChanged();
 }
 
 BaseState* Enemy::GetCurrentState()
@@ -88,6 +92,6 @@ void Enemy::OnPropertyDraw()
 
 	if (ImGui::Combo("###State", &item_current, items, IM_ARRAYSIZE(items)))
 	{
-		mCurrentState = eEnemyState(item_current);
+		ChangeState(eEnemyState(item_current));
 	}
 }

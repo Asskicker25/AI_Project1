@@ -7,6 +7,13 @@ void SeekState::Start()
 	mTarget = &mEnemy->mTarget->transform;
 }
 
+
+void SeekState::OnStateChanged()
+{
+	mEnemy->meshes[2]->material->AsMaterial()->SetBaseColor(mEnemy->mSeekColor);
+	mEnemy->meshes[3]->material->AsMaterial()->SetBaseColor(mEnemy->mSeekColor);
+}
+
 void SeekState::Update()
 {
 	if (mEnemy->mTarget == nullptr) return;
@@ -42,3 +49,4 @@ void SeekState::HandleRotation()
 
 	mEnemy->transform.SetQuatRotation(rotationQuat);
 }
+

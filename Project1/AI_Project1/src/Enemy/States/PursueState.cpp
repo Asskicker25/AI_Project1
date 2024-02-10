@@ -6,6 +6,14 @@ void PursueState::Start()
 	mTarget = &mEnemy->mTarget->transform;
 }
 
+
+void PursueState::OnStateChanged()
+{
+	mEnemy->meshes[2]->material->AsMaterial()->SetBaseColor(mEnemy->mPursueColor);
+	mEnemy->meshes[3]->material->AsMaterial()->SetBaseColor(mEnemy->mPursueColor);
+}
+
+
 void PursueState::Update()
 {
 	if (mEnemy->mTarget == nullptr) return;

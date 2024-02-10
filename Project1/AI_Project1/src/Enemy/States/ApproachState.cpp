@@ -6,6 +6,12 @@ void ApproachState::Start()
 	mTarget = &mEnemy->mTarget->transform;
 }
 
+void ApproachState::OnStateChanged()
+{
+	mEnemy->meshes[2]->material->AsMaterial()->SetBaseColor(mEnemy->mApproachColor);
+	mEnemy->meshes[3]->material->AsMaterial()->SetBaseColor(mEnemy->mApproachColor);
+}
+
 void ApproachState::Update()
 {
 	if (mEnemy->mTarget == nullptr) return;
@@ -51,3 +57,4 @@ void ApproachState::HandleRotation()
 	glm::quat rotationQuat = glm::quatLookAt(mMoveDir * (mTowards ? -1.0f : 1.0f), glm::vec3(0, 1, 0));
 	mEnemy->transform.SetQuatRotation(rotationQuat);
 }
+

@@ -25,7 +25,7 @@ void AI_Application::SetUp()
 
 	PlayerController* playerController = new PlayerController();
 
-	Enemy* enemy = new Enemy(playerController, IDLE, "Assets/Models/Enemy.fbx");
+	Enemy* enemy = new Enemy(playerController, SEEK, "Assets/Models/Enemy.fbx");
 	enemy->name = "Enemy";
 	enemy->transform.SetPosition(glm::vec3(-4.0f, 0, -32));
 }

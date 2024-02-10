@@ -23,5 +23,8 @@ private:
 	float mCurrentDistance = 0;
 
 	glm::vec3 mMoveDir;
+
+	// Inherited via BaseState
+	void OnStateChanged() override;
 };
 
