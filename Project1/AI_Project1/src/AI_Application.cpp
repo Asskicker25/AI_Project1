@@ -6,7 +6,8 @@
 void AI_Application::SetUp()
 {
 	viewportCamera->InitializeCamera(PERSPECTIVE, windowWidth, windowHeight, 0.1f, 500.0f, 45.0f);
-	viewportCamera->transform.SetPosition(glm::vec3(0, 0, 10));
+	viewportCamera->transform.SetPosition(glm::vec3(0, 10, 10));
+	viewportCamera->transform.SetRotation(glm::vec3(-15, 0, 0));
 	Renderer::GetInstance().renderMode = SHADED;
 
 	imGuiPanelEnable = true;
@@ -17,6 +18,7 @@ void AI_Application::SetUp()
 	mainCamera->transform.SetRotation(glm::vec3(-13.20, 0, 0.0f));
 
 	Light* dirLight = new Light();
+	dirLight->intensity = 0.9f;
 	dirLight->transform.SetScale(glm::vec3(0.1f));
 	dirLight->transform.SetPosition(glm::vec3(0, 0, 3));
 	dirLight->InitializeLight(Directional);
@@ -25,9 +27,21 @@ void AI_Application::SetUp()
 
 	PlayerController* playerController = new PlayerController();
 
-	Enemy* enemy = new Enemy(playerController, SEEK, "Assets/Models/Enemy.fbx");
-	enemy->name = "Enemy";
-	enemy->transform.SetPosition(glm::vec3(-4.0f, 0, -32));
+	glm::vec3 enemyPositions[5] = {
+		glm::vec3(-10,0,-40),
+		glm::vec3(-20, 0, -20),
+		glm::vec3(20,0,-20),
+		glm::vec3(0,0,-20),
+		glm::vec3(10,0,-40)
+
+	};
+
+	for (int i = 0; i < 5; i++)
+	{
+		Enemy* enemy = new Enemy(playerController, eEnemyState(i+1), "Assets/Models/Enemy.fbx");
+		enemy->name = "Enemy_" + std::to_string(i);
+		enemy->transform.SetPosition(enemyPositions[i]);
+	}
 }
 
 void AI_Application::Update()

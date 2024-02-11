@@ -19,6 +19,8 @@ private:
 
 	Transform* mTarget = nullptr;
 
+	float mCurrentDistance = 0;
+
 	glm::vec3 mMoveDir;
 
 	// Inherited via BaseState

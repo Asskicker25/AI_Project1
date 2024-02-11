@@ -5,7 +5,7 @@
 class ToolPanel : public BasePanel
 {
 public:
-	bool isMaximizedPressed = false;
+	bool isMaximizedPressed = true;
 
 	void OnRender(float windowSizeX, float windowSizeY) override;
 };

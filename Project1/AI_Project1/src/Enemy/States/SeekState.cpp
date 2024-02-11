@@ -32,7 +32,9 @@ void SeekState::HandleDirection()
 {
 	mMoveDir = mTarget->position - mEnemy->transform.position;
 
-	if (glm::length(mMoveDir) != 0)
+	mCurrentDistance = glm::length(mMoveDir);
+
+	if (mCurrentDistance != 0)
 	{
 		mMoveDir = glm::normalize(mMoveDir);
 	}
@@ -45,6 +47,8 @@ void SeekState::HandleMovement()
 
 void SeekState::HandleRotation()
 {
+	if (mCurrentDistance < 0.1f) return;
+
 	glm::quat rotationQuat = glm::quatLookAt(-mMoveDir, glm::vec3(0,1,0));
 
 	mEnemy->transform.SetQuatRotation(rotationQuat);
